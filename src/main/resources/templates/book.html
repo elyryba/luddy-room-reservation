@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Room</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 th:text="'Book Room ' + ${room.roomNumber}">Book Room</h1>
+            <a th:href="@{/room/{id}(id=${room.id})}" class="btn-secondary">← Back</a>
+        </header>
+        
+        <div class="booking-form">
+            <form action="/reservations/book" method="post">
+                <input type="hidden" name="roomId" th:value="${room.id}">
+                
+                <div class="form-group">
+                    <label>Your Name:</label>
+                    <input type="text" name="userName" required placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Email:</label>
+                    <input type="email" name="userEmail" required placeholder="jdoe@iu.edu">
+                </div>
+                
+                <div class="form-group">
+                    <label>Start Time:</label>
+                    <input type="datetime-local" name="startTime" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>End Time:</label>
+                    <input type="datetime-local" name="endTime" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Purpose:</label>
+                    <textarea name="purpose" rows="3" required placeholder="Study group, meeting, etc."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-large">Confirm Booking</button>
+            </form>
+            
+            <div th:if="${error}" class="error-message">
+                <p th:text="${error}">Error message</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Available Rooms</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Available Rooms</h1>
+            <a href="/" class="btn-secondary">← Back to Search</a>
+        </header>
+        
+        <div class="rooms-grid">
+            <div th:each="room : ${rooms}" class="room-card">
+                <h3 th:text="'Room ' + ${room.roomNumber}">Room 101</h3>
+                <p><strong>Floor:</strong> <span th:text="${room.floor}">1</span></p>
+                <p><strong>Capacity:</strong> <span th:text="${room.capacity}">20</span> people</p>
+                
+                <div class="features">
+                    <span th:if="${room.hasWhiteboard}" class="badge">📝 Whiteboard</span>
+                    <span th:if="${room.hasProjector}" class="badge">📽️ Projector</span>
+                    <span th:if="${room.hasComputer}" class="badge">💻 Computer</span>
+                    <span th:if="${room.hasTV}" class="badge">📺 TV</span>
+                    <span th:if="${room.wheelchairAccessible}" class="badge">♿ Accessible</span>
+                </div>
+                
+                <a th:href="@{/room/{id}(id=${room.id})}" class="btn-primary">View Details</a>
+            </div>
+        </div>
+        
+        <div th:if="${#lists.isEmpty(rooms)}" class="no-results">
+            <p>No rooms match your criteria. Try adjusting your search.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Reservations</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Reservations</h1>
+            <p th:text="'Email: ' + ${email}">Email</p>
+            <a href="/" class="btn-secondary">← Home</a>
+        </header>
+        
+        <div class="reservations-list">
+            <div th:each="reservation : ${reservations}" class="reservation-card">
+                <h3 th:text="'Room ' + ${reservation.roomId}">Room</h3>
+                <p><strong>Start:</strong> <span th:text="${#temporals.format(reservation.startTime, 'MMM dd, yyyy hh:mm a')}">Date</span></p>
+                <p><strong>End:</strong> <span th:text="${#temporals.format(reservation.endTime, 'MMM dd, yyyy hh:mm a')}">Date</span></p>
+                <p><strong>Purpose:</strong> <span th:text="${reservation.purpose}">Purpose</span></p>
+                
+                <form th:action="@{/reservations/cancel/{id}(id=${reservation.id})}" method="post" style="display:inline;">
+                    <input type="hidden" name="email" th:value="${email}">
+                    <button type="submit" class="btn-danger" onclick="return confirm('Cancel this reservation?')">Cancel</button>
+                </form>
+            </div>
+        </div>
+        
+        <div th:if="${#lists.isEmpty(reservations)}" class="no-results">
+            <p>You have no reservations yet.</p>
+        </div>
+    </div>
+</body>
+</html>

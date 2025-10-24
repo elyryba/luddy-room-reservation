@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Luddy Room Reservation</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏫 Luddy Room Reservation System</h1>
+            <p>Find and book rooms at IU Luddy School</p>
+        </header>
+        
+        <div class="search-box">
+            <h2>Search Available Rooms</h2>
+            <form action="/rooms" method="get">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Minimum Capacity:</label>
+                        <input type="number" name="minCapacity" placeholder="e.g. 20">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Floor:</label>
+                        <select name="floor">
+                            <option value="">Any Floor</option>
+                            <option value="1">Floor 1</option>
+                            <option value="2">Floor 2</option>
+                            <option value="3">Floor 3</option>
+                            <option value="4">Floor 4</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="whiteboard" value="true"> Whiteboard
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="projector" value="true"> Projector
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="computer" value="true"> Computer
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="tv" value="true"> TV
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="wheelchair" value="true"> Wheelchair Accessible
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary">Search Rooms</button>
+            </form>
+        </div>
+        
+        <div class="quick-links">
+            <a href="/rooms" class="btn">View All Rooms</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-﻿package com.luddy.roomreservation.service;
+package com.luddy.roomreservation.service;
 
 import com.luddy.roomreservation.model.Room;
 import com.luddy.roomreservation.repository.RoomRepository;
@@ -6,117 +6,84 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class RoomService {
     
-    private final RoomRepository roomRepository;
-
     @Autowired
-    public RoomService(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
-    }
-
-    /**
-     * Get all rooms in the system
-     */
+    private RoomRepository roomRepository;
+    
     public List<Room> getAllRooms() {
-        return roomRepository.findAll();
+        return StreamSupport.stream(roomRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
-
-    /**
-     * Find a specific room by ID
-     */
-    public Optional<Room> getRoomById(Long id) {
-        return roomRepository.findById(id);
-    }
-
-    /**
-     * Get all rooms on a specific floor
-     */
-    public List<Room> getRoomsByFloor(Integer floor) {
+    
+    public List<Room> getRoomsByFloor(int floor) {
         return roomRepository.findByFloor(floor);
     }
-
-    /**
-     * Find rooms with at least the specified capacity
-     */
-    public List<Room> getRoomsByMinCapacity(Integer minCapacity) {
-        return roomRepository.findByCapacityGreaterThanEqual(minCapacity);
-    }
-
-    /**
-     * This is the main filtering method
-     * Takes various criteria and returns matching rooms
-     */
-    public List<Room> filterRooms(Integer minCapacity, 
-                                   Boolean needsWhiteboard, 
-                                   Boolean needsProjector,
-                                   Boolean needsComputer,
-                                   Boolean needsElevator, 
-                                   Integer floor) {
+    
+    // main filter method - takes different search criteria
+    // TODO: maybe add pagination later if we get too many rooms
+    public List<Room> filterRooms(Integer minCapacity, Integer floor, 
+                                   Boolean needsWhiteboard, Boolean needsProjector,
+                                   Boolean needsComputer, Boolean needsTV,
+                                   Boolean needsWheelchairAccess) {
         
         List<Room> rooms = getAllRooms();
         
-        // filter by capacity if specified
-        if(minCapacity != null) {
+        // filter by each criteria if its not null
+        if (minCapacity != null) {
             rooms = rooms.stream()
-                    .filter(room -> room.getCapacity() >= minCapacity)
+                    .filter(r -> r.getCapacity() >= minCapacity)
                     .collect(Collectors.toList());
         }
         
-        // check for whiteboard
-        if(needsWhiteboard != null && needsWhiteboard) {
+        if (floor != null) {
             rooms = rooms.stream()
-                    .filter(room -> Boolean.TRUE.equals(room.getHasWhiteboard()))
+                    .filter(r -> r.getFloor() == floor)
                     .collect(Collectors.toList());
         }
         
-        // check for projector
-        if(needsProjector != null && needsProjector) {
+        if (needsWhiteboard != null && needsWhiteboard) {
             rooms = rooms.stream()
-                    .filter(room -> Boolean.TRUE.equals(room.getHasProjector()))
-                    .collect(Collectors.toList());
-        }
-
-        // check for computer
-        if(needsComputer != null && needsComputer) {
-            rooms = rooms.stream()
-                    .filter(room -> Boolean.TRUE.equals(room.getHasComputer()))
+                    .filter(Room::isHasWhiteboard)
                     .collect(Collectors.toList());
         }
         
-        // elevator access check
-        if(needsElevator != null && needsElevator) {
+        if (needsProjector != null && needsProjector) {
             rooms = rooms.stream()
-                    .filter(room -> Boolean.TRUE.equals(room.getElevatorAccess()))
+                    .filter(Room::isHasProjector)
                     .collect(Collectors.toList());
         }
         
-        // specific floor requested
-        if(floor != null) {
+        if (needsComputer != null && needsComputer) {
             rooms = rooms.stream()
-                    .filter(room -> room.getFloor().equals(floor))
+                    .filter(Room::isHasComputer)
+                    .collect(Collectors.toList());
+        }
+        
+        if (needsTV != null && needsTV) {
+            rooms = rooms.stream()
+                    .filter(Room::isHasTV)
+                    .collect(Collectors.toList());
+        }
+        
+        if (needsWheelchairAccess != null && needsWheelchairAccess) {
+            rooms = rooms.stream()
+                    .filter(Room::isWheelchairAccessible)
                     .collect(Collectors.toList());
         }
         
         return rooms;
     }
-
-    // Save a room
+    
     public Room saveRoom(Room room) {
         return roomRepository.save(room);
     }
-
-    // Delete a room
+    
     public void deleteRoom(Long id) {
         roomRepository.deleteById(id);
-    }
-    
-    // Get count of rooms
-    public long getTotalRoomCount() {
-        return roomRepository.count();
     }
 }

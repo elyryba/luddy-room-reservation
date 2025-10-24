@@ -1,0 +1,163 @@
+#!/bin/ba
+
+# Update Room.java
+cat > src/main/java/com/luddy/roomreservation/model/Room.java << 'ENDFILE'
+package com.luddy.roomreservation.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table("rooms")
+public class Room {
+    
+    @Id
+    private Long id;
+    private String roomNumber;
+    private int floor;
+    private int capacity;
+    
+    // features
+    private boolean hasWhiteboard;
+    private boolean hasProjector;
+    private boolean hasComputer;
+    private boolean hasTV;
+    
+    // accessibility 
+    private boolean wheelchairAccessible;
+    private boolean hasElevatorAccess;
+    
+    public Room() {}
+    
+    // getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getRoomNumber() { return roomNumber; }
+    public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
+    
+    public int getFloor() { return floor; }
+    public void setFloor(int floor) { this.floor = floor; }
+    
+    public int getCapacity() { return capacity; }
+    public void setCapacity(int capacity) { this.capacity = capacity; }
+    
+    public boolean isHasWhiteboard() { return hasWhiteboard; }
+    public void setHasWhiteboard(boolean hasWhiteboard) { this.hasWhiteboard = hasWhiteboard; }
+    
+    public boolean isHasProjector() { return hasProjector; }
+    public void setHasProjector(boolean hasProjector) { this.hasProjector = hasProjector; }
+    
+    public boolean isHasComputer() { return hasComputer; }
+    public void setHasComputer(boolean hasComputer) { this.hasComputer = hasComputer; }
+    
+    public boolean isHasTV() { return hasTV; }
+    public void setHasTV(boolean hasTV) { this.hasTV = hasTV; }
+    
+    public boolean isWheelchairAccessible() { return wheelchairAccessible; }
+    public void setWheelchairAccessible(boolean wheelchairAccessible) { 
+        this.wheelchairAccessible = wheelchairAccessible; 
+    }
+    
+    public boolean isHasElevatorAccess() { return hasElevatorAccess; }
+    public void setHasElevatorAccess(boolean hasElevatorAccess) { 
+        this.hasElevatorAccess = hasElevatorAccess; 
+    }
+}
+ENDFILE
+
+# Update RoomService.java
+cat > src/main/java/com/luddy/roomreservation/service/RoomService.java << 'ENDFILE'
+package com.luddy.roomreservation.service;
+
+import com.luddy.roomreservation.model.Room;
+import com.luddy.roomreservation.repository.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+@Service
+public class RoomService {
+    
+    @Autowired
+    private RoomRepository roomRepository;
+    
+    public List<Room> getAllRooms() {
+        return StreamSupport.stream(roomRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
+    
+    public List<Room> getRoomsByFloor(int floor) {
+        return roomRepository.findByFloor(floor);
+    }
+    
+    // main filter method - takes different search criteria
+    // TODO: maybe add pagination later if we get too many rooms
+    public List<Room> filterRooms(Integer minCapacity, Integer floor, 
+                                   Boolean needsWhiteboard, Boolean needsProjector,
+                                   Boolean needsComputer, Boolean needsTV,
+                                   Boolean needsWheelchairAccess) {
+        
+        List<Room> rooms = getAllRooms();
+        
+        // filter by each criteria if its not null
+        if (minCapacity != null) {
+            rooms = rooms.stream()
+                    .filter(r -> r.getCapacity() >= minCapacity)
+                    .collect(Collectors.toList());
+        }
+        
+        if (floor != null) {
+            rooms = rooms.stream()
+                    .filter(r -> r.getFloor() == floor)
+                    .collect(Collectors.toList());
+        }
+        
+        if (needsWhiteboard != null && needsWhiteboard) {
+            rooms = rooms.stream()
+                    .filter(Room::isHasWhiteboard)
+                    .collect(Coll    
+       if (needsProjector != null && needsProjector) {
+           rooms = rooms.stream()
+                    .filter(Room::isHasProjector)
+                   .collect(Collectors.toList());
+        }
+       
+        if (needsComputer != null && need        rooms = rooms.stream()
+                   .filter(Room::isHasComputer)
+                   .collect(Collectors.toList());
+       }
+       
+        if (needsTV !=            rooms = rooms.stream()
+                .filter(Room::isHasTV)
+         }
+       
+        if (needsWheelchairAccess != null && needsWheelchairAccess) {
+           rooms = rooms.stream()
+                    .filter(Room::isWheelchairAccessible)
+                   .collect(Collectors.toList());
+        }
+       
+        return ro
+    public Room saveRoom(Room room) {        return roomRepository.save(room);
+    }
+   
+    public void deleteRoom(Long id) {
+       roomRepository.deleteById(id);
+  
+# Update RoomRepository.jav
+cat > src/main/java/com/luddy/roomreservation/repository/RoomRepository.java << 'ENDFILE'
+package com.luddy.roomreservation.repository;
+import com.luddy.roomreservation.model.Room
+import org.springframework.data.repository.CrudReposg.springframework.stereotype.Repository;
+
+import jaa.util.List;
+
+@Repositor
+public interface RoomRepositoryextends CrudRepository<Room, Long> {
+    // spring data will generate    List<Room> findByFloor(int floor);
+
+ENDF
+# Update RoomServic

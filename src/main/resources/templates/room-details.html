@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Room Details</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 th:text="'Room ' + ${room.roomNumber}">Room Details</h1>
+            <a href="/rooms" class="btn-secondary">← Back to Rooms</a>
+        </header>
+        
+        <div class="room-details">
+            <div class="detail-card">
+                <h2>Room Information</h2>
+                <p><strong>Room Number:</strong> <span th:text="${room.roomNumber}">101</span></p>
+                <p><strong>Floor:</strong> <span th:text="${room.floor}">1</span></p>
+                <p><strong>Capacity:</strong> <span th:text="${room.capacity}">20</span> people</p>
+            </div>
+            
+            <div class="detail-card">
+                <h2>Available Equipment</h2>
+                <ul>
+                    <li th:if="${room.hasWhiteboard}">📝 Whiteboard</li>
+                    <li th:if="${room.hasProjector}">📽️ Projector</li>
+                    <li th:if="${room.hasComputer}">💻 Computer</li>
+                    <li th:if="${room.hasTV}">📺 TV</li>
+                </ul>
+            </div>
+            
+            <div class="detail-card">
+                <h2>Accessibility</h2>
+                <p th:if="${room.wheelchairAccessible}">♿ Wheelchair Accessible</p>
+                <p th:if="${room.hasElevatorAccess}">🛗 Elevator Access</p>
+            </div>
+            
+            <a th:href="@{/reservations/book/{id}(id=${room.id})}" class="btn-primary btn-large">
+                📅 Book This Room
+            </a>
+        </div>
+    </div>
+</body>
+</html>

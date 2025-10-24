@@ -1,36 +1,79 @@
-﻿# Luddy Room Reservation System
+# Luddy Room Reservation System
 
-Simple room booking app for Luddy Building
+room booking app for luddy building at IU
 
-## What it does
-- Search for available rooms
-- Filter by capacity, features, floor
-- Easy booking interface
+## what it does
+- search for available rooms
+- filter by capacity, floor, and equipment
+- shows room features (projector, whiteboard, etc)
 
-## Tech
-- Spring Boot
-- Thymeleaf
-- SQLite
-- Docker
+## tech stack
+- java 17
+- spring boot
+- sqlite database
+- maven
 
-## Running it
-mvn spring-boot:run
+## setup
+just open in codespace and run:
+cat > src/main/java/com/luddy/roomreservation/model/Room.java << 'EOF'
+package com.luddy.roomreservation.model;
 
-Then go to http://localhost:8080
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-## Testing
-mvn test
-
-## Sprint 1 Status
-- [x] Database schema
-- [x] Room model
-- [x] Repository layer
-- [x] Service layer
-- [x] Unit tests
-- [x] Sample data
-- [x] Dev container setup
-
-## Next Sprint
-- [ ] Controllers and web pages
-- [ ] Search interface
-- [ ] Booking functionality
+@Table("rooms")
+public class Room {
+    
+    @Id
+    private Long id;
+    private String roomNumber;
+    private int floor;
+    private int capacity;
+    
+    // features
+    private boolean hasWhiteboard;
+    private boolean hasProjector;
+    private boolean hasComputer;
+    private boolean hasTV;
+    
+    // accessibility 
+    private boolean wheelchairAccessible;
+    private boolean hasElevatorAccess;
+    
+    public Room() {}
+    
+    // getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public String getRoomNumber() { return roomNumber; }
+    public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
+    
+    public int getFloor() { return floor; }
+    public void setFloor(int floor) { this.floor = floor; }
+    
+    public int getCapacity() { return capacity; }
+    public void setCapacity(int capacity) { this.capacity = capacity; }
+    
+    public boolean isHasWhiteboard() { return hasWhiteboard; }
+    public void setHasWhiteboard(boolean hasWhiteboard) { this.hasWhiteboard = hasWhiteboard; }
+    
+    public boolean isHasProjector() { return hasProjector; }
+    public void setHasProjector(boolean hasProjector) { this.hasProjector = hasProjector; }
+    
+    public boolean isHasComputer() { return hasComputer; }
+    public void setHasComputer(boolean hasComputer) { this.hasComputer = hasComputer; }
+    
+    public boolean isHasTV() { return hasTV; }
+    public void setHasTV(boolean hasTV) { this.hasTV = hasTV; }
+    
+    public boolean isWheelchairAccessible() { return wheelchairAccessible; }
+    public void setWheelchairAccessible(boolean wheelchairAccessible) { 
+        this.wheelchairAccessible = wheelchairAccessible; 
+    }
+    
+    public boolean isHasElevatorAccess() { return hasElevatorAccess; }
+    public void setHasElevatorAccess(boolean hasElevatorAccess) { 
+        this.hasElevatorAccess = hasElevatorAccess; 
+    }
+}
