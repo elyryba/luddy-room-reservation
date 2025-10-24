@@ -25,21 +25,21 @@ public class Room {
 
     // features
 
-    private boolean hasWhiteboard;
+    private Integer hasWhiteboard;
 
-    private boolean hasProjector;
+    private Integer hasProjector;
 
-    private boolean hasComputer;
+    private Integer hasComputer;
 
-    private boolean hasTV;
+    private Integer hasTV;
 
     
 
     // accessibility 
 
-    private boolean wheelchairAccessible;
+    private Integer wheelchairAccessible;
 
-    private boolean hasElevatorAccess;
+    private Integer hasElevatorAccess;
 
     
 
@@ -73,33 +73,33 @@ public class Room {
 
     
 
-    public boolean isHasWhiteboard() { return hasWhiteboard; }
+    public Integer isHasWhiteboard() { return hasWhiteboard; }
 
-    public void setHasWhiteboard(boolean hasWhiteboard) { this.hasWhiteboard = hasWhiteboard; }
-
-    
-
-    public boolean isHasProjector() { return hasProjector; }
-
-    public void setHasProjector(boolean hasProjector) { this.hasProjector = hasProjector; }
+    public void setHasWhiteboard(Integer hasWhiteboard) { this.hasWhiteboard = hasWhiteboard; }
 
     
 
-    public boolean isHasComputer() { return hasComputer; }
+    public Integer isHasProjector() { return hasProjector; }
 
-    public void setHasComputer(boolean hasComputer) { this.hasComputer = hasComputer; }
-
-    
-
-    public boolean isHasTV() { return hasTV; }
-
-    public void setHasTV(boolean hasTV) { this.hasTV = hasTV; }
+    public void setHasProjector(Integer hasProjector) { this.hasProjector = hasProjector; }
 
     
 
-    public boolean isWheelchairAccessible() { return wheelchairAccessible; }
+    public Integer isHasComputer() { return hasComputer; }
 
-    public void setWheelchairAccessible(boolean wheelchairAccessible) { 
+    public void setHasComputer(Integer hasComputer) { this.hasComputer = hasComputer; }
+
+    
+
+    public Integer isHasTV() { return hasTV; }
+
+    public void setHasTV(Integer hasTV) { this.hasTV = hasTV; }
+
+    
+
+    public Integer isWheelchairAccessible() { return wheelchairAccessible; }
+
+    public void setWheelchairAccessible(Integer wheelchairAccessible) { 
 
         this.wheelchairAccessible = wheelchairAccessible; 
 
@@ -107,9 +107,9 @@ public class Room {
 
     
 
-    public boolean isHasElevatorAccess() { return hasElevatorAccess; }
+    public Integer isHasElevatorAccess() { return hasElevatorAccess; }
 
-    public void setHasElevatorAccess(boolean hasElevatorAccess) { 
+    public void setHasElevatorAccess(Integer hasElevatorAccess) { 
 
         this.hasElevatorAccess = hasElevatorAccess; 
 
