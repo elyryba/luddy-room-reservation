@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Table("reservations")
 public class Reservation {
     
-    @Id
+    @Id @org.springframework.data.annotation.Transient private boolean isNew = true; public boolean isNew() { return isNew || id == null; } public void setNew(boolean isNew) { this.isNew = isNew; } //@Id
     private Long id;
     private Long roomId;
     private String userName;
