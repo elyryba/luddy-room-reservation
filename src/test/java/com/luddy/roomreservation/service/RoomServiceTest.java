@@ -34,23 +34,23 @@ class RoomServiceTest {
         room1.setRoomNumber("101");
         room1.setFloor(1);
         room1.setCapacity(20);
-        room1.setHasWhiteboard(true);
-        room1.setHasProjector(true);
+        room1.setHasWhiteboard(1);
+        room1.setHasProjector(1);
         
         room2 = new Room();
         room2.setId(2L);
         room2.setRoomNumber("201");
         room2.setFloor(2);
         room2.setCapacity(40);
-        room2.setHasProjector(true);
-        room2.setWheelchairAccessible(true);
+        room2.setHasProjector(1);
+        room2.setWheelchairAccessible(1);
         
         room3 = new Room();
         room3.setId(3L);
         room3.setRoomNumber("102");
         room3.setFloor(1);
         room3.setCapacity(10);
-        room3.setHasComputer(true);
+        room3.setHasComputer(1);
     }
     
     @Test
