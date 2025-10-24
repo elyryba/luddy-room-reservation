@@ -54,6 +54,7 @@ public class ReservationController {
             return "redirect:/reservations/my?email=" + userEmail + "&success=true";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            roomService.getAllRooms().stream().filter(r -> r.getId().equals(roomId)).findFirst().ifPresent(room -> model.addAttribute("room", room));
             return "book";
         }
     }
