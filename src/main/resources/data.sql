@@ -1,4 +1,4 @@
-﻿DELETE FROM rooms;
+DELETE FROM rooms;
 INSERT INTO rooms (room_number, floor, capacity, has_whiteboard, has_projector, has_computer, has_tv, wheelchair_accessible, has_elevator_access) VALUES
 ('101', 1, 20, 1, 1, 0, 0, 1, 1),
 ('102', 1, 15, 1, 0, 1, 0, 1, 1),
