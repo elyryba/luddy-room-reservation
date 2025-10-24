@@ -48,31 +48,31 @@ public class RoomService {
         
         if (needsWhiteboard != null && needsWhiteboard) {
             rooms = rooms.stream()
-                    .filter(Room::isHasWhiteboard)
+                    .filter(r -> r.getHasWhiteboard() != null && r.getHasWhiteboard() == 1)
                     .collect(Collectors.toList());
         }
         
         if (needsProjector != null && needsProjector) {
             rooms = rooms.stream()
-                    .filter(Room::isHasProjector)
+                    .filter(r -> r.getHasProjector() != null && r.getHasProjector() == 1)
                     .collect(Collectors.toList());
         }
         
         if (needsComputer != null && needsComputer) {
             rooms = rooms.stream()
-                    .filter(Room::isHasComputer)
+                    .filter(r -> r.getHasComputer() != null && r.getHasComputer() == 1)
                     .collect(Collectors.toList());
         }
         
         if (needsTV != null && needsTV) {
             rooms = rooms.stream()
-                    .filter(Room::isHasTV)
+                    .filter(r -> r.getHasTV() != null && r.getHasTV() == 1)
                     .collect(Collectors.toList());
         }
         
         if (needsWheelchairAccess != null && needsWheelchairAccess) {
             rooms = rooms.stream()
-                    .filter(Room::isWheelchairAccessible)
+                    .filter(r -> r.getWheelchairAccessible() != null && r.getWheelchairAccessible() == 1)
                     .collect(Collectors.toList());
         }
         
