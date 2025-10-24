@@ -73,31 +73,31 @@ public class Room {
 
     
 
-    public Integer isHasWhiteboard() { return hasWhiteboard; }
+    public Integer getHasWhiteboard() { return hasWhiteboard; }
 
     public void setHasWhiteboard(Integer hasWhiteboard) { this.hasWhiteboard = hasWhiteboard; }
 
     
 
-    public Integer isHasProjector() { return hasProjector; }
+    public Integer getHasProjector() { return hasProjector; }
 
     public void setHasProjector(Integer hasProjector) { this.hasProjector = hasProjector; }
 
     
 
-    public Integer isHasComputer() { return hasComputer; }
+    public Integer getHasComputer() { return hasComputer; }
 
     public void setHasComputer(Integer hasComputer) { this.hasComputer = hasComputer; }
 
     
 
-    public Integer isHasTV() { return hasTV; }
+    public Integer getHasTV() { return hasTV; }
 
     public void setHasTV(Integer hasTV) { this.hasTV = hasTV; }
 
     
 
-    public Integer isWheelchairAccessible() { return wheelchairAccessible; }
+    public Integer getWheelchairAccessible() { return wheelchairAccessible; }
 
     public void setWheelchairAccessible(Integer wheelchairAccessible) { 
 
@@ -107,7 +107,7 @@ public class Room {
 
     
 
-    public Integer isHasElevatorAccess() { return hasElevatorAccess; }
+    public Integer getHasElevatorAccess() { return hasElevatorAccess; }
 
     public void setHasElevatorAccess(Integer hasElevatorAccess) { 
 
