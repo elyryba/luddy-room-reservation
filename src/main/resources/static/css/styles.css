@@ -2,7 +2,7 @@
     font-family: 'Segoe UI', system-ui, sans-serif;
     margin: 0;
     padding: 0;
-    background: #990000;
+    background: #EDEBEB;
     min-height: 100vh;
 }
 .container {
@@ -12,99 +12,91 @@
 }
 header {
     background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    padding: 2rem 2rem 2rem 140px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
+    border-bottom: 4px solid #990000;
     position: relative;
-}
-header::before {
-    content: 'IU';
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #990000;
-    opacity: 0.15;
+    background-image: url('https://brand.iu.edu/img/iu-sig-formal.svg');
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 100px;
 }
 header h1 {
     margin: 0 0 0.5rem 0;
     color: #990000;
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 800;
 }
 header p {
     margin: 0;
-    color: #333;
+    color: #000;
     font-size: 1.2rem;
-    font-weight: 500;
 }
 .search-form, .detail-card, .room-card {
     background: white;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     margin-bottom: 2rem;
 }
-.search-form h2, .detail-card h2, .room-card h3 {
+.search-form {
+    border-left: 6px solid #990000;
+}
+.room-card {
+    border-left: 4px solid #990000;
+}
+h1, h2, h3 {
     color: #990000;
-    font-weight: 700;
 }
 .form-group label {
     font-weight: 700;
-    margin-bottom: 0.5rem;
     color: #000;
     font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
 .form-group input, .form-group select {
     padding: 0.75rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1.05rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
     color: #000;
 }
 .btn-primary {
     background: #990000;
     color: white;
-    padding: 1rem 2.5rem;
+    padding: 1rem 2rem;
     border: none;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 1.1rem;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-}
-.btn-primary:hover {
-    background: #7D110C;
 }
 .btn {
     background: white;
     color: #990000;
-    padding: 1rem 2.5rem;
+    padding: 1rem 2rem;
     border: 3px solid #990000;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 1.1rem;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
 }
-.btn:hover {
-    background: #990000;
-    color: white;
-}
-.room-card h3 {
-    font-size: 1.8rem;
-    margin: 0 0 1rem 0;
-}
 .room-info {
     color: #000;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    line-height: 1.8;
     font-size: 1.05rem;
+    line-height: 1.8;
+}
+.feature-badge {
+    background: #990000;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 .rooms-grid {
     display: grid;
@@ -127,24 +119,7 @@ header p {
     gap: 0.5rem;
     margin: 1rem 0;
 }
-.feature-badge {
-    background: #990000;
-    color: white;
-    padding: 0.4rem 0.9rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
 .quick-links {
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap;
-}
-.alert-success {
-    background: #d4edda;
-    color: #000;
-    padding: 1.2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.1rem;
 }
