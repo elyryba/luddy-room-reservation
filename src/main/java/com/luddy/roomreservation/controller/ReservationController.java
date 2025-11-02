@@ -52,7 +52,6 @@ public class ReservationController {
             
             try { reservationService.createReservation(reservation); } catch (Exception ignored) {}
             model.addAttribute("success", "Booking successful!"); model.addAttribute("email", userEmail); return "booking-success";
-            model.addAttribute("success", "Booking successful!"); model.addAttribute("email", userEmail); return "booking-success";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             roomService.getAllRooms().stream().filter(r -> r.getId().equals(roomId)).findFirst().ifPresent(room -> model.addAttribute("room", room));
