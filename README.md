@@ -1,79 +1,27 @@
-# Luddy Room Reservation System
+﻿# Luddy Room Reservation System
 
-room booking app for luddy building at IU
+A web application for reserving rooms in the Luddy building.
 
-## what it does
-- search for available rooms
-- filter by capacity, floor, and equipment
-- shows room features (projector, whiteboard, etc)
+## Features
+- Browse available rooms
+- Search and filter by capacity, floor, and amenities
+- Book rooms with date/time selection
+- View your reservations
 
-## tech stack
-- java 17
-- spring boot
-- sqlite database
-- maven
+## Email Notifications
+**Note:** This system uses Mailtrap for email testing. Confirmation emails are sent to Mailtrap's test inbox, NOT to your actual email address. This is for development/testing purposes only.
 
-## setup
-just open in codespace and run:
-cat > src/main/java/com/luddy/roomreservation/model/Room.java << 'EOF'
-package com.luddy.roomreservation.model;
+To receive emails in Mailtrap:
+1. Sign up at https://mailtrap.io
+2. Check the Mailtrap inbox to see booking confirmations
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+## Running the Application
+1. Clone the repository
+2. Run: mvn spring-boot:run
+3. Open browser to http://localhost:8080
 
-@Table("rooms")
-public class Room {
-    
-    @Id
-    private Long id;
-    private String roomNumber;
-    private int floor;
-    private int capacity;
-    
-    // features
-    private boolean hasWhiteboard;
-    private boolean hasProjector;
-    private boolean hasComputer;
-    private boolean hasTV;
-    
-    // accessibility 
-    private boolean wheelchairAccessible;
-    private boolean hasElevatorAccess;
-    
-    public Room() {}
-    
-    // getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    
-    public String getRoomNumber() { return roomNumber; }
-    public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
-    
-    public int getFloor() { return floor; }
-    public void setFloor(int floor) { this.floor = floor; }
-    
-    public int getCapacity() { return capacity; }
-    public void setCapacity(int capacity) { this.capacity = capacity; }
-    
-    public boolean isHasWhiteboard() { return hasWhiteboard; }
-    public void setHasWhiteboard(boolean hasWhiteboard) { this.hasWhiteboard = hasWhiteboard; }
-    
-    public boolean isHasProjector() { return hasProjector; }
-    public void setHasProjector(boolean hasProjector) { this.hasProjector = hasProjector; }
-    
-    public boolean isHasComputer() { return hasComputer; }
-    public void setHasComputer(boolean hasComputer) { this.hasComputer = hasComputer; }
-    
-    public boolean isHasTV() { return hasTV; }
-    public void setHasTV(boolean hasTV) { this.hasTV = hasTV; }
-    
-    public boolean isWheelchairAccessible() { return wheelchairAccessible; }
-    public void setWheelchairAccessible(boolean wheelchairAccessible) { 
-        this.wheelchairAccessible = wheelchairAccessible; 
-    }
-    
-    public boolean isHasElevatorAccess() { return hasElevatorAccess; }
-    public void setHasElevatorAccess(boolean hasElevatorAccess) { 
-        this.hasElevatorAccess = hasElevatorAccess; 
-    }
-}
+## Technology Stack
+- Spring Boot 3.2.0
+- SQLite Database
+- Thymeleaf Templates
+- Maven
