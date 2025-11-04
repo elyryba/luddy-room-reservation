@@ -49,22 +49,21 @@ A web application for managing room reservations in Indiana University's Luddy H
 
 ### Running Locally
 
-1. Clone the repository:
-\\\ash
+1. Clone the repository
+`
 git clone https://github.com/elyryba/luddy-room-reservation.git
 cd luddy-room-reservation
-\\\
+`
 
-2. Build and run:
-\\\ash
+2. Build and run
+`
 mvn spring-boot:run
-\\\
+`
 
-3. Access at \http://localhost:8080\
+3. Access at http://localhost:8080
 
 ## Project Structure
-
-\\\
+`
 src/main/
 ├── java/com/luddy/roomreservation/
 │   ├── controller/     # Request handlers
@@ -76,22 +75,25 @@ src/main/
     ├── static/css/     # Stylesheets
     ├── schema.sql      # Database schema
     └── data.sql        # Initial data
-\\\
+`
 
 ## Database Schema
 
 The application uses SQLite with two main tables:
 
 **Rooms**: Stores room information including number, floor, capacity, and available amenities
+
 **Reservations**: Tracks bookings with user details, time slots, and purpose
 
 ## Development Timeline
 
 Development followed an agile approach with three two-week sprints:
 
-**Sprint 1** - Backend foundation and database design  
-**Sprint 2** - Core features and user interface  
-**Sprint 3** - Booking system and deployment  
+**Sprint 1** - Backend foundation and database design
+
+**Sprint 2** - Core features and user interface
+
+**Sprint 3** - Booking system and deployment
 
 ## Email Notifications
 
@@ -113,7 +115,8 @@ The system uses Mailtrap for email testing during development. Booking confirmat
 
 ## Author
 
-Ely Ryba  
+Ely Ryba
+
 Indiana University
 
 ## License
