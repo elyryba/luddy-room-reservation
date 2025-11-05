@@ -5,8 +5,6 @@ A web application for managing room reservations in Indiana University's Luddy H
 ## Live Application
 **URL:** https://luddy-room-reservation.onrender.com/
 
-*Note: The application is hosted on Render's free tier, so initial load time may be slightly longer as the server spins up.*
-
 ## Features
 
 ### Room Management
