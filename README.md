@@ -3,7 +3,7 @@
 A web application for managing room reservations in Indiana University's Luddy Hall. This system allows users to search, filter, and book available rooms based on their needs.
 
 ## Live Application
-**URL:** https://your-render-url.onrender.com
+**URL:** https://luddy-room-reservation.onrender.com/
 
 *Note: The application is hosted on Render's free tier, so initial load time may be slightly longer as the server spins up.*
 
